@@ -65,49 +65,19 @@ public class Main {
                 Node node = childNodes.item(i);
                 if (Node.ELEMENT_NODE == node.getNodeType()) {
                     NodeList childNodes2 = node.getChildNodes();
+                    Element element2 = (Element) node;
+                    long id = Long.parseLong(element2.getElementsByTagName("id").item(0).getTextContent());
+                    String firstName = element2.getElementsByTagName("firstName").item(0).getTextContent();
+                    String lastName = element2.getElementsByTagName("lastName").item(0).getTextContent();
+                    String country = element2.getElementsByTagName("country").item(0).getTextContent();
+                    int age = Integer.parseInt(element2.getElementsByTagName("age").item(0).getTextContent());
 
-                    long id = 0;
-                    String firstName = "";
-                    String lastName = "";
-                    String country = "";
-                    int age = 0;
-
-                    for (int j = 0; j < childNodes2.getLength(); j++) {
-
-                        Node node1 = childNodes2.item(j);
-                        if (Node.ELEMENT_NODE == node1.getNodeType()) {
-                            Element element = (Element) node1;
-                            switch (node1.getNodeName()) {
-                                case "id": {
-                                    id = Long.parseLong(element.getTextContent());
-                                    break;
-                                }
-                                case "firstName": {
-                                    firstName = element.getTextContent();
-                                    break;
-                                }
-                                case "lastName": {
-                                    lastName = element.getTextContent();
-                                    break;
-                                }
-                                case "country": {
-                                    country = element.getTextContent();
-                                    break;
-                                }
-                                case "age": {
-                                    age = Integer.parseInt(element.getTextContent());
-                                    break;
-                                }
-                            }
-                        }
-                    }
                     list.add(new Employee(id, firstName, lastName, country, age));
                 }
             }
         } catch (IOException | ParserConfigurationException | SAXException e) {
             throw new RuntimeException(e);
         }
-
         return list;
     }
 
