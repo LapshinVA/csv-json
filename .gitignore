@@ -5,7 +5,8 @@ build/
 !**/src/test/**/build/
 .idea/
 gradle/
-data.csv
+data.json
+data2.json
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
